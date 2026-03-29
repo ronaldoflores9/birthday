@@ -539,6 +539,7 @@ function CountdownGate({ onEditorAccess }) {
                 borderRadius: 16,
                 padding: "18px 22px",
                 backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
                 minWidth: 78,
               }}
             >
@@ -662,6 +663,7 @@ function CountdownGate({ onEditorAccess }) {
             style={{
               cursor: "pointer",
               userSelect: "none",
+              touchAction: "manipulation",
               width: 130,
               animation: giftPhase === "shaking" ? "shake .65s ease" : "none",
             }}
@@ -708,6 +710,7 @@ function CountdownGate({ onEditorAccess }) {
               borderRadius: 14,
               padding: "14px 20px",
               backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
               fontSize: 14,
               color: "rgba(224,242,254,.9)",
               animation: "msgPop .4s ease both",
@@ -739,6 +742,7 @@ function CountdownGate({ onEditorAccess }) {
                 cursor: "pointer",
                 letterSpacing: ".08em",
                 transition: "all .2s",
+                touchAction: "manipulation",
               }}
               onMouseEnter={(e) =>
                 (e.target.style.borderColor = "rgba(56,189,248,.5)")
@@ -771,7 +775,7 @@ function CountdownGate({ onEditorAccess }) {
                   borderRadius: 10,
                   padding: "8px 14px",
                   color: "#e0f2fe",
-                  fontSize: 13,
+                  fontSize: 16,
                   outline: "none",
                   width: 180,
                   animation: pwError ? "errShake .3s ease" : "none",
@@ -787,6 +791,7 @@ function CountdownGate({ onEditorAccess }) {
                   padding: "8px 16px",
                   fontSize: 13,
                   cursor: "pointer",
+                  touchAction: "manipulation",
                 }}
               >
                 Entrar
@@ -917,6 +922,7 @@ function GiftIntro({ onDone }) {
           cursor: phase === "idle" ? "pointer" : "default",
           position: "relative",
           userSelect: "none",
+          touchAction: "manipulation",
         }}
       >
         <div
@@ -1056,6 +1062,7 @@ function FloatingMsg({ msg, style, onDone }) {
         borderRadius: 14,
         padding: "10px 16px",
         backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
         fontSize: 13,
         color: "rgba(224,242,254,.88)",
         lineHeight: 1.5,
@@ -1144,6 +1151,7 @@ function MessagesGalaxy() {
           border: "1px solid rgba(56,189,248,.1)",
           background: "rgba(4,21,37,.5)",
           backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
         }}
       >
         {stars.slice(0, 40).map((s) => (
@@ -1197,6 +1205,8 @@ function PhotoCard({ index }) {
     <div
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
+      onTouchStart={() => setHov(true)}
+      onTouchEnd={() => setTimeout(() => setHov(false), 300)}
       style={{
         flexShrink: 0,
         width: 200,
@@ -1231,6 +1241,8 @@ function PhotoCard({ index }) {
             <img
               src={img}
               alt=""
+              loading="lazy"
+              decoding="async"
               style={{
                 position: "absolute",
                 inset: 0,
@@ -1338,6 +1350,7 @@ function PhotoTimeline() {
           overflowX: "auto",
           paddingBottom: 8,
           scrollbarWidth: "none",
+          WebkitOverflowScrolling: "touch",
         }}
       >
         {CONTENT.photos.images.map((_, i) => (
@@ -1418,6 +1431,7 @@ function LetterSection() {
             borderRadius: 20,
             padding: "44px 36px 36px",
             backdropFilter: "blur(14px)",
+            WebkitBackdropFilter: "blur(14px)",
             position: "relative",
             overflow: "hidden",
           }}
@@ -1673,12 +1687,14 @@ function MainPage() {
             </h1>
             <h2
               style={{
-                fontSize: "clamp(26px,5.5vw,50px)",
+                fontSize: "clamp(18px,5.5vw,50px)",
                 fontWeight: 700,
                 margin: "0 0 20px",
                 background: "linear-gradient(135deg,#38bdf8,#a5f3fc)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
+                overflowWrap: "break-word",
+                wordBreak: "break-word",
               }}
             >
               {CONTENT.name}
@@ -1727,7 +1743,7 @@ function MainPage() {
             position: "relative",
             zIndex: 1,
             textAlign: "center",
-            padding: "36px 24px 60px",
+            padding: "36px 24px calc(60px + env(safe-area-inset-bottom))",
             borderTop: "1px solid rgba(56,189,248,.07)",
           }}
         >
