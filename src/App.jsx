@@ -509,8 +509,6 @@ function CountdownGate({ onEditorAccess }) {
       `}</style>
       <style>{`
         @keyframes floatPic{0%,100%{transform:translateY(0px)}50%{transform:translateY(-12px)}}
-        .floating-pic{display:block}
-        @media(max-width:479px){.floating-pic{display:none!important}}
       `}</style>
       <StarField />
 
