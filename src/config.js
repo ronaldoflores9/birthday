@@ -63,25 +63,25 @@ export const CONTENT = {
     title: "Un mensaje desde el corazón 🪐",
     body: `Querida Alexandra,
 
+Hoy me siento a escribirte esta carta porque para cuando la leas es tu cumpleaños, y dejame decirte que eso es un día muy especial. Pues si piensas que es un cumpleaños es el día que naciste y eso fue ya hace 21 años. WOW 21 años es pal y difícil de creer.
 
+Pero eso quiere decir que hace 21 años nació una persona increíble, una persona que sin importar lo que pasa siempre está ahí para apoyar a los demás. Nació una personita que aunque vive su día en un corre y corre nunca deja a sus amistades atrás.
+
+Le agradezco a dios todos los días por haberte puesto en mi vida, ya que como siempre te he dicho tú has hecho que mejore como persona. No puedo creer que ya tienes 21 (btw me senté a escribir esto sin saber que escribir así que va a ser un rant algaro).
+
+Espero que el día de hoy la estés pasando increíble y que todas las metas que tengas para toda la vida la logres porque en donde sea que estés siempre das lo mejor y mereces todo lo que se te pueda dar.
+
+Nunca dejes de luchar por lo que quieres incluso cuando a veces las cosas se ven difíciles, la vida pone esos desafíos porque sabe que podemos ante ellos. Y si hablamos de los mejores tú te encuentras entre ellos. Eres y siempre serás luz. Que dios siempre te me bendiga y te me cuide, te quiero un millón multiplicado por infinito y siempre voy a estar aquí para ti sin importar lo que pase en el pasado, presente y futuro.
+
+Con mucho amor y cariño
+
+
+PD: Tu regalo va a llegar tardecito pero está duro.
 
 Ronaldo Elier Flores Nazario`,
   },
 
-//   Hoy me siento a escribirte esta carta porque para cuando la leas es tu cumpleaños, y dejame decirte que eso es un día muy especial. Pues si piensas que es un cumpleaños es el día que naciste y eso fue ya hace 21 años. WOW 21 años es pal y difícil de creer.
 
-// Pero eso quiere decir que hace 21 años nació una persona increíble, una persona que sin importar lo que pasa siempre está ahí para apoyar a los demás. Nació una personita que aunque vive su día en un corre y corre nunca deja a sus amistades atrás.
-
-// Le agradezco a dios todos los días por haberte puesto en mi vida, ya que como siempre te he dicho tú has hecho que mejore como persona. No puedo creer que ya tienes 21 (btw me senté a escribir esto sin saber que escribir así que va a ser un rant algaro).
-
-// Espero que el día de hoy la estés pasando increíble y que todas las metas que tengas para toda la vida la logres porque en donde sea que estés siempre das lo mejor y mereces todo lo que se te pueda dar.
-
-// Nunca dejes de luchar por lo que quieres incluso cuando a veces las cosas se ven difíciles, la vida pone esos desafíos porque sabe que podemos ante ellos. Y si hablamos de los mejores tú te encuentras entre ellos. Eres y siempre serás luz. Que dios siempre te me bendiga y te me cuide, te quiero un millón multiplicado por infinito y siempre voy a estar aquí para ti sin importar lo que pase en el pasado, presente y futuro.
-
-// Con mucho amor y cariño
-
-
-// PD: Tu regalo va a llegar tardecito pero está duro.
 
   footer: {
     message: "¡Que cumplas muchos más! 🎂",

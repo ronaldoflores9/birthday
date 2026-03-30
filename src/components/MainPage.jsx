@@ -6,11 +6,13 @@ import { StarField, StarCursor, Confetti } from "./StarField";
 import { GiftIntro } from "./GiftIntro";
 import { BirthdayCakeSection } from "./BirthdayCake";
 import { MessagesGalaxy } from "./MessagesGalaxy";
-import { PhotoTimeline } from "./PhotoTimeline";
 import { LetterSection } from "./LetterSection";
 import { PhotoBoothSection } from "./PhotoBooth";
 import { CertificadoSection } from "./Certificado";
 import { CoheteSection } from "./CoheteSection";
+import { ConstelacionSection } from "./Constelacion";
+import { PolaroidWall } from "./PolaroidWall";
+import { MemoriaGalactica } from "./MemoriaGalactica";
 
 /* ── MAIN PAGE ── */
 export function MainPage() {
@@ -28,7 +30,8 @@ export function MainPage() {
           color: "#e0f2fe",
           fontFamily: "var(--font-sans,system-ui,sans-serif)",
           position: "relative",
-          overflow: "hidden",
+          overflowX: "hidden",
+          overflowY: "visible",
           animation: giftDone ? "pageReveal .9s ease both" : "none",
           opacity: giftDone ? 1 : 0,
         }}
@@ -247,8 +250,10 @@ export function MainPage() {
 
         <BirthdayCakeSection />
         <CoheteSection />
+        <ConstelacionSection />
+        <MemoriaGalactica />
         <MessagesGalaxy />
-        <PhotoTimeline />
+        <PolaroidWall />
         <LetterSection />
         <PhotoBoothSection />
         <CertificadoSection />
