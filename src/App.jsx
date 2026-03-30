@@ -366,9 +366,16 @@ function StarCursor() {
         ticking = false;
       });
     };
+    const onTouch = (e) => {
+      const t = e.touches[0];
+      if (!t) return;
+      onMove({ clientX: t.clientX, clientY: t.clientY });
+    };
     window.addEventListener("mousemove", onMove);
+    window.addEventListener("touchmove", onTouch, { passive: true });
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onTouch);
       style.remove();
     };
   }, []);
@@ -502,13 +509,16 @@ function CountdownGate({ onEditorAccess }) {
       `}</style>
       <style>{`
         @keyframes floatPic{0%,100%{transform:translateY(0px)}50%{transform:translateY(-12px)}}
+        .floating-pic{display:block}
+        @media(max-width:479px){.floating-pic{display:none!important}}
       `}</style>
       <StarField />
 
-      {/* Fotos flotantes polaroid */}
+      {/* Fotos flotantes polaroid — ocultas en pantallas < 480px */}
       {FLOATING_PHOTOS.map((p, i) => (
         <div
           key={i}
+          className="floating-pic"
           style={{
             position: "fixed",
             top: p.top,
@@ -527,8 +537,8 @@ function CountdownGate({ onEditorAccess }) {
               padding: "6px 6px 22px",
               borderRadius: 4,
               boxShadow: "0 6px 24px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.3)",
-              width: 100,
-              opacity: 0.82,
+              width: 86,
+              opacity: 0.75,
             }}
           >
             <img
@@ -1374,10 +1384,13 @@ function BirthdayCakeSection() {
               onClick={() => tapCandle(i)}
               style={{
                 cursor: isLit ? "pointer" : "default",
+                touchAction: "manipulation",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 gap: 0,
+                padding: "8px 10px",
+                margin: "-8px -10px",
               }}
             >
               {/* smoke when blown out */}
@@ -2626,8 +2639,8 @@ function PhotoBoothSection() {
   const [activeSlot, setActiveSlot] = useState(null);
   const fileInputRef = useRef(null);
 
-  const SLOT_W = 58;
-  const SLOT_H = 48;
+  const SLOT_W = 64;
+  const SLOT_H = 56;
   const STRIP_PH = 128;
   const STRIP_PAD = 8;
   const STRIP_HEADER_H = 40;
@@ -2925,11 +2938,11 @@ function PhotoBoothSection() {
                           onClick={(e) => removePhoto(idx, e)}
                           style={{
                             position: "absolute", top: 2, right: 2,
-                            width: 15, height: 15, borderRadius: "50%",
+                            width: 22, height: 22, borderRadius: "50%",
                             background: "rgba(0,0,0,.75)",
                             display: "flex", alignItems: "center", justifyContent: "center",
-                            fontSize: 8, color: "#fff", cursor: "pointer",
-                            fontWeight: 700,
+                            fontSize: 10, color: "#fff", cursor: "pointer",
+                            fontWeight: 700, touchAction: "manipulation",
                           }}
                         >✕</div>
                       )}
