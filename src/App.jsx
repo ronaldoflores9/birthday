@@ -2761,9 +2761,20 @@ function PhotoBoothSection() {
                 sx = 0;
                 sy = (img.height - sh) / 2;
               }
-              ctx.filter = "grayscale(1)";
-              ctx.drawImage(img, sx, sy, sw, sh, x, y, PW, PH);
-              ctx.filter = "none";
+              // draw to temp canvas, convert to grayscale, then stamp
+              const tmp = document.createElement("canvas");
+              tmp.width = PW;
+              tmp.height = PH;
+              const tc = tmp.getContext("2d");
+              tc.drawImage(img, sx, sy, sw, sh, 0, 0, PW, PH);
+              const id = tc.getImageData(0, 0, PW, PH);
+              const d = id.data;
+              for (let j = 0; j < d.length; j += 4) {
+                const g = d[j] * 0.299 + d[j + 1] * 0.587 + d[j + 2] * 0.114;
+                d[j] = d[j + 1] = d[j + 2] = g;
+              }
+              tc.putImageData(id, 0, 0);
+              ctx.drawImage(tmp, x, y, PW, PH);
               resolve();
             };
             img.src = src;
