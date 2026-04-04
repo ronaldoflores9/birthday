@@ -66,7 +66,6 @@ export const CONTENT = {
 
 
 
-PD: Tu regalo va a llegar tardecito pero está duro.
 
 Ronaldo Elier Flores Nazario`,
   },
