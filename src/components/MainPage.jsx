@@ -14,6 +14,7 @@ import { ConstelacionSection } from "./Constelacion";
 import { PolaroidWall } from "./PolaroidWall";
 import { MemoriaGalactica } from "./MemoriaGalactica";
 import { PinguinoSorpresa } from "./PinguinoSorpresa";
+import { ModoDrama } from "./ModoDrama";
 
 /* ── MAIN PAGE ── */
 export function MainPage() {
@@ -259,6 +260,7 @@ export function MainPage() {
         <PhotoBoothSection />
         <CertificadoSection />
         <PinguinoSorpresa />
+        <ModoDrama />
 
         <footer
           style={{
