@@ -72,7 +72,7 @@ function drawRocket(ctx, cx, cy, size, angle) {
   ctx.restore();
 }
 
-function drawOverlay(ctx, t, width, height) {
+function drawOverlay(ctx, t, width, height, bottomText) {
   ctx.clearRect(0, 0, width, height);
 
   // Stars
@@ -150,11 +150,11 @@ function drawOverlay(ctx, t, width, height) {
   ctx.shadowColor = "#0ea5e9";
   ctx.shadowBlur = 14;
   ctx.fillStyle = "rgba(255,255,255,0.92)";
-  ctx.fillText(`✨ Feliz Cumpleaños ${CONTENT.name.split(" ")[0]} ✨`, width / 2, height - 16);
+  ctx.fillText(bottomText, width / 2, height - 16);
   ctx.restore();
 }
 
-export function CamaraAR({ label = "Filtro AR" }) {
+export function CamaraAR({ label = "Filtro AR", photoText = `✨ Feliz Cumpleaños ${CONTENT.name.split(" ")[0]} ✨` }) {
   const [isOpen, setIsOpen] = useState(false);
   const [hasStream, setHasStream] = useState(false);
   const [error, setError] = useState(null);
@@ -198,7 +198,7 @@ export function CamaraAR({ label = "Filtro AR" }) {
     const ctx = canvas.getContext("2d");
 
     const loop = (ts) => {
-      drawOverlay(ctx, ts / 1000, canvas.width, canvas.height);
+      drawOverlay(ctx, ts / 1000, canvas.width, canvas.height, photoText);
       rafRef.current = requestAnimationFrame(loop);
     };
     rafRef.current = requestAnimationFrame(loop);
@@ -389,82 +389,83 @@ export function CamaraAR({ label = "Filtro AR" }) {
                 />
               )}
 
-              {!captured ? (
-                <>
-                  {/* Live video (mirrored) */}
-                  <video
-                    ref={videoRef}
-                    muted
-                    playsInline
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      transform: "scaleX(-1)",
-                    }}
-                  />
-                  {/* Overlay canvas */}
-                  <canvas
-                    ref={canvasRef}
-                    width={W}
-                    height={H}
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      pointerEvents: "none",
-                    }}
-                  />
-                  {/* Loading / error states */}
-                  {!hasStream && !error && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "rgba(125,211,252,.7)",
-                        fontSize: 14,
-                        flexDirection: "column",
-                        gap: 8,
-                      }}
-                    >
-                      <div style={{ fontSize: 32 }}>📷</div>
-                      Iniciando cámara…
-                    </div>
-                  )}
-                  {error && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#fca5a5",
-                        fontSize: 14,
-                        flexDirection: "column",
-                        gap: 10,
-                        padding: 24,
-                        textAlign: "center",
-                        whiteSpace: "pre-line",
-                      }}
-                    >
-                      <div style={{ fontSize: 36 }}>🚫</div>
-                      {error}
-                    </div>
-                  )}
-                </>
-              ) : (
-                /* Captured photo */
+              {/* Live video — siempre montado para no perder el stream al repetir */}
+              <video
+                ref={videoRef}
+                muted
+                playsInline
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  transform: "scaleX(-1)",
+                  display: captured ? "none" : "block",
+                }}
+              />
+              {/* Overlay canvas — siempre montado */}
+              <canvas
+                ref={canvasRef}
+                width={W}
+                height={H}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  pointerEvents: "none",
+                  display: captured ? "none" : "block",
+                }}
+              />
+              {/* Loading / error states */}
+              {!captured && !hasStream && !error && (
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "rgba(125,211,252,.7)",
+                    fontSize: 14,
+                    flexDirection: "column",
+                    gap: 8,
+                  }}
+                >
+                  <div style={{ fontSize: 32 }}>📷</div>
+                  Iniciando cámara…
+                </div>
+              )}
+              {!captured && error && (
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#fca5a5",
+                    fontSize: 14,
+                    flexDirection: "column",
+                    gap: 10,
+                    padding: 24,
+                    textAlign: "center",
+                    whiteSpace: "pre-line",
+                  }}
+                >
+                  <div style={{ fontSize: 36 }}>🚫</div>
+                  {error}
+                </div>
+              )}
+              {/* Foto capturada */}
+              {captured && (
                 <img
                   src={captured}
                   alt="Foto cósmica"
                   style={{
+                    position: "absolute",
+                    inset: 0,
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",

@@ -590,7 +590,7 @@ export function CountdownGate({ onEditorAccess }) {
           )}
         </div>
       </div>
-      <CamaraAR label="Lo que viene es bueno" />
+      <CamaraAR photoText="Lo que viene es bueno ✨" />
     </div>
   );
 }
