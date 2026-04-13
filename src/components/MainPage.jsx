@@ -15,6 +15,7 @@ import { PolaroidWall } from "./PolaroidWall";
 import { MemoriaGalactica } from "./MemoriaGalactica";
 import { PinguinoSorpresa } from "./PinguinoSorpresa";
 import { ModoDrama } from "./ModoDrama";
+import { CamaraAR } from "./CamaraAR";
 
 /* ── MAIN PAGE ── */
 export function MainPage() {
@@ -261,6 +262,7 @@ export function MainPage() {
         <CertificadoSection />
         <PinguinoSorpresa />
         <ModoDrama />
+        <CamaraAR />
 
         <footer
           style={{

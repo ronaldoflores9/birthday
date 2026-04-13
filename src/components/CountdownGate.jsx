@@ -3,6 +3,7 @@ import { CONTENT, FUNNY_MSGS, BIRTHDAY, EDITOR_PASSWORD } from "../config";
 import { stars, BG_ROCKETS, FLOATING_PHOTOS, pick } from "../utils";
 import { Rocket, Planet } from "./Rocket";
 import { StarField } from "./StarField";
+import { CamaraAR } from "./CamaraAR";
 
 /* ── COUNTDOWN GATE ── */
 export function CountdownGate({ onEditorAccess }) {
@@ -589,6 +590,7 @@ export function CountdownGate({ onEditorAccess }) {
           )}
         </div>
       </div>
+      <CamaraAR label="Lo que viene es bueno" />
     </div>
   );
 }
